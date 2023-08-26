@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Search for vehicle{% endblock title %}
+
+{% block content %}
+    <div class="pb-6 grid grid-cols-4 gap-4 bg-gray-100 rounded-xl h-screen">
+        <div class="col-span-1">
+
+            <form method="get" action="{% url 'vehicle:vehicles' %}">
+                <input name="query" class="mt-3 ml-3 w-full py-4 px-6 border rounded-xl" type="text" value="{{ query }}" placeholder="Enter vehicle make">
+
+                <input name="model" class="mt-2 ml-3 w-full py-4 px-6 border rounded-xl" type="text" value="{{ model }}" placeholder="Enter vehicle model">
+
+                <input name="price" class="mt-2 ml-3 w-full py-4 px-6 border rounded-xl" type="text" value="{{ price }}" placeholder="Enter vehicle price">
+
+                <button class="mt-3 ml-3 py-4 px-8 text-lg bg-teal-500 text-white rounded-xl">Search</button>
+
+                <ul class="mt-6">
+                    <li><a href="{% url 'vehicle:vehicles' %}" class="mt-12 ml-3 py-4 px-8 text-lg bg-black text-white rounded-xl">Clear</a></li>
+                </ul>
+
+            </form>
+        </div>
+
+        <div class="col-span-3">
+            <div class="mt-3 ml-2 grid grid-cols-6 gap-4">
+                {% for vehicle in vehicles %}
+                 <div>
+                     <a href="{% url 'vehicle:detail' vehicle.id %}">
+                         <div>
+                             {% if vehicle.image %}
+                             <img src="{{ vehicle.image.url }}" class="rounded-t-xl" style="width: 100%; height: 160px;">
+                             {% else %}
+                               <p>No image available</p>
+                             {% endif %}    
+                         </div>
+     
+                         <div class="p-6 bg-white rounded-b-xl">
+                             <h2 class="text-2xl">{{ vehicle.make }}</h2>
+                             <h2 class="text-2xl">{{ vehicle.model }}</h2>
+                             <p class="text-gray-500">Price: {{ vehicle.price}}</p>
+                         </div>
+                     </a>
+                  </div>
+                {% endfor %}   
+             </div>
+        </div>
+    </div>    
+{% endblock %}
