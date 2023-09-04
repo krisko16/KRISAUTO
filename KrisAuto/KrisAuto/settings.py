@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'core',
     'vehicle',
     'dashboard',
+    'conversation', 
 ]
 
 MIDDLEWARE = [

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="md:mr-100 mb-10 mt-10 grid grid-cols-5 gap-6">
-    <div class="col-span-2">
+    <div class="mt-10 col-span-2">
         {% if vehicle.image %}
         <img src="{{ vehicle.image.url }}" class="rounded-xl w-full">
         {% else %}
@@ -12,7 +12,7 @@
         {% endif %}    
     </div>
 
-    <div class="col-span-3 mb-24 p-10 bg-gray-100 rounded-xl">
+    <div class="mt-10 col-span-3 mb-24 p-10 bg-gray-100 rounded-xl">
         <h1 class="mb-6 text-3xl">{{ vehicle.make}} {{ vehicle.model }}</h1>
         <p class="text-gray-600"><strong>Price: </strong>{{ vehicle.price }}</p>
         <p class="text-gray-600"><strong>Category: </strong>{{ vehicle.category }}</p>
@@ -30,6 +30,8 @@
                 <a href="{% url 'vehicle:edit' vehicle.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-black text-white rounded-xl">Edit</a>
                 <a href="{% url 'vehicle:delete' vehicle.id %}" onclick="return confirmDelete();" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete</a>
             </div>
+        {% else %}  
+            <a href="{% url 'conversation:new' vehicle.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact seller</a>
         {% endif %}
 </div>
 
